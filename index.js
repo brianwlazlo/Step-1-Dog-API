@@ -1,19 +1,21 @@
 
 //get dog images
 function getDogImages(numOfDogs) {
-    if (numOfDogs < 3 || numOfDogs > 50) {
+    if (numOfDogs > 50) {
         $('#number-of-dogs').val('');
-        return alert("Please only enter a number between 3 and 50");
+        return alert("Please only enter a number less than 50");
+    } else if (numOfDogs < 3) {
+        fetch(`https://dog.ceo/api/breeds/image/random/3`)
+            .then(response=> response.json())
+            .then(responseJson => console.log(responseJson))
+            .catch(error => alert("Somthing went wrong"));
     } else {
         fetch(`https://dog.ceo/api/breeds/image/random/${numOfDogs}`)
             .then(response=> response.json())
             .then(responseJson => console.log(responseJson))
             .catch(error => alert("Somthing went wrong"));
     }
-    
     $('#number-of-dogs').val('');
-    
-    
 }
 
 // watch for user input
@@ -25,17 +27,6 @@ function watchForm() {
     });
     
 }
-
-/*
-function handleButton() {
-    $('#dogQty-btn').on('click', function() {
-        let numOfDogs = $('#number-of-dogs').val();
-        getDogImages( numOfDogs ); 
-    })
-}
-
-//$('#dogs').find('input[type=text], textarea').val('');
-*/
 
 $(function() {
     console.log('App loaded! Waiting for submit!');
