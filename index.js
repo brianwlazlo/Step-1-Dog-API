@@ -7,7 +7,7 @@ function getDogImages(numOfDogs) {
     } else {
         fetch(`https://dog.ceo/api/breeds/image/random/${numOfDogs}`)
             .then(response=> response.json())
-            .then(responseJson => displayResults(responseJson))
+            .then(responseJson => console.log(responseJson))
             .catch(error => alert("Somthing went wrong"));
     }
     $('#number-of-dogs').val('');
